@@ -726,11 +726,11 @@ export default function App() {
                 <div style={{ padding: '12px', background: 'var(--bg-input)', borderRadius: '8px', border: '1px solid var(--border)' }}>
                   <strong>Step 1:</strong> Clone or download the repository from GitHub:
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '6px', padding: '8px 12px', background: 'var(--bg-surface)', borderRadius: '6px', fontFamily: 'var(--font-mono)', fontSize: '12px' }}>
-                    <code>git clone https://github.com/YOUR_USERNAME/leetcode_extension.git</code>
+                    <code>git clone https://github.com/SITHESWAR-K/leetcode_extension.git</code>
                     <button 
                       className="nav-btn" 
                       style={{ padding: '3px 8px' }}
-                      onClick={() => copyToClipboard('git clone https://github.com/YOUR_USERNAME/leetcode_extension.git', 'clone')}
+                      onClick={() => copyToClipboard('git clone https://github.com/SITHESWAR-K/leetcode_extension.git', 'clone')}
                     >
                       {copiedCmd === 'clone' ? <Check size={12} style={{ color: 'var(--easy)' }} /> : <Copy size={12} />}
                       <span>{copiedCmd === 'clone' ? 'Copied' : 'Copy'}</span>
