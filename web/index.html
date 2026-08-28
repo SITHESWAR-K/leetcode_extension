@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/icon48.png" />
-    <link rel="apple-touch-icon" href="/icon128.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Primary SEO Meta Tags -->
-    <title>LeetCode Company Tags & Interview Questions Explorer (Free & Offline)</title>
-    <meta name="title" content="LeetCode Company Tags & Interview Questions Explorer (Free & Offline)" />
-    <meta name="description" content="Unlock company interview tags for 3,399+ LeetCode problems across 660+ tech companies (Google, Meta, Amazon, Microsoft, Bloomberg, Apple). Filter by interview duration (30 days, 3 months, 6 months) and difficulty. 100% Free." />
-    <meta name="keywords" content="leetcode company tags, leetcode interview questions, company wise leetcode problems, google interview questions leetcode, amazon leetcode questions, meta interview leetcode, leetcode free company tags, dsa company tags, coding interview preparation" />
-    <meta name="author" content="LeetCode Company Explorer" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#17171c" />
-    <link rel="canonical" href="https://leetcode-company-viewer.web.app/" />
 
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://leetcode-company-viewer.web.app/" />
-    <meta property="og:title" content="LeetCode Company Tags & Interview Questions Explorer" />
-    <meta property="og:description" content="Filter 3,399+ LeetCode problems by 660+ companies and interview duration (30 days, 3 months, 6 months). Free browser extension and web dashboard." />
-    <meta property="og:image" content="https://leetcode-company-viewer.web.app/icon128.png" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/icon48.png" />
+  <link rel="apple-touch-icon" href="/icon128.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://leetcode-company-viewer.web.app/" />
-    <meta property="twitter:title" content="LeetCode Company Tags & Interview Questions Explorer" />
-    <meta property="twitter:description" content="Filter 3,399+ LeetCode problems by 660+ companies and interview duration. Free browser extension & web dashboard." />
-    <meta property="twitter:image" content="https://leetcode-company-viewer.web.app/icon128.png" />
+  <!-- Primary SEO Meta Tags -->
+  <title>LeetCode Company Tags & Interview Questions Explorer (Free & Offline)</title>
+  <meta name="title" content="LeetCode Company Tags & Interview Questions Explorer (Free & Offline)" />
+  <meta name="description"
+    content="Unlock company interview tags for 3,399+ LeetCode problems across 660+ tech companies (Google, Meta, Amazon, Microsoft, Bloomberg, Apple). Filter by interview duration (30 days, 3 months, 6 months) and difficulty. 100% Free." />
+  <meta name="keywords"
+    content="leetcode company tags, leetcode interview questions, company wise leetcode problems, google interview questions leetcode, amazon leetcode questions, meta interview leetcode, leetcode free company tags, dsa company tags, coding interview preparation" />
+  <meta name="author" content="LeetCode Company Explorer" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#17171c" />
+  <link rel="canonical" href="https://leetcode-company-viewer.web.app/" />
 
-    <!-- JSON-LD Structured Data for Google Search -->
-    <script type="application/ld+json">
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://leetcode-company-viewer.web.app/" />
+  <meta property="og:title" content="LeetCode Company Tags & Interview Questions Explorer" />
+  <meta property="og:description"
+    content="Filter 3,399+ LeetCode problems by 660+ companies and interview duration (30 days, 3 months, 6 months). Free browser extension and web dashboard." />
+  <meta property="og:image" content="https://leetcode-company-viewer.web.app/icon128.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://leetcode-company-viewer.web.app/" />
+  <meta property="twitter:title" content="LeetCode Company Tags & Interview Questions Explorer" />
+  <meta property="twitter:description"
+    content="Filter 3,399+ LeetCode problems by 660+ companies and interview duration. Free browser extension & web dashboard." />
+  <meta property="twitter:image" content="https://leetcode-company-viewer.web.app/icon128.png" />
+
+  <!-- JSON-LD Structured Data for Google Search -->
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -48,13 +53,40 @@
       }
     </script>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBRkaT3LdMg3UNojznnw_vcI_OluzeVzqk",
+      authDomain: "leetcode-company-viewer.firebaseapp.com",
+      projectId: "leetcode-company-viewer",
+      storageBucket: "leetcode-company-viewer.firebasestorage.app",
+      messagingSenderId: "307721677121",
+      appId: "1:307721677121:web:7ffd6fb59fbd9f72b919c0",
+      measurementId: "G-S6FY8L9S25"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</body>
+
 </html>
