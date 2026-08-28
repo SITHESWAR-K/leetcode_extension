@@ -1,0 +1,23 @@
+{
+  "name": "leetcode-company-tags-extension",
+  "version": "1.0.0",
+  "description": "Chrome & Edge Extension that adds company interview tags and filters directly into LeetCode.",
+  "main": "src/content/content.js",
+  "scripts": {
+    "build:data": "node scripts/build_dataset.js",
+    "build:web": "cd web && npm run build && cd .. && node scripts/sync_dashboard_to_extension.js",
+    "build:all": "npm run build:data && node scripts/sync_web_assets.js && cd web && npm run build && cd .. && node scripts/sync_dashboard_to_extension.js",
+    "package": "node scripts/package_extension.js",
+    "test": "node scripts/verify_extension.js"
+  },
+  "keywords": [
+    "leetcode",
+    "chrome-extension",
+    "react",
+    "firebase",
+    "interview-preparation",
+    "company-tags"
+  ],
+  "author": "",
+  "license": "MIT"
+}

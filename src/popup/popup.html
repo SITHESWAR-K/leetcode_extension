@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeetCode Company Tags</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="header-brand">
+        <div class="header-logo">🏢</div>
+        <div>
+          <h1 class="header-title">LeetCode Company Explorer</h1>
+          <p class="header-subtitle" id="stats-subtitle">660 Companies • 3,399 Problems</p>
+        </div>
+      </div>
+      <a href="https://github.com/snehasishroy/leetcode-companywise-interview-questions" target="_blank" class="github-badge" title="Source GitHub Repository">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+      </a>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="popup-tabs">
+      <button class="tab-btn active" data-tab="tab-companies">🏢 Companies</button>
+      <button class="tab-btn" data-tab="tab-problems">🔍 Problems</button>
+      <button class="tab-btn" data-tab="tab-settings">⚙️ Settings</button>
+    </nav>
+
+    <!-- Tab 1: Companies Explorer -->
+    <section id="tab-companies" class="tab-content active">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="company-search-input" placeholder="Search 660+ companies (e.g. Google, Meta)..." autofocus>
+      </div>
+
+      <div class="quick-tags" id="popular-companies-bar">
+        <!-- Quick pills populated dynamically -->
+      </div>
+
+      <div class="list-container" id="companies-list">
+        <!-- Company cards populated dynamically -->
+      </div>
+    </section>
+
+    <!-- Tab 2: Problem Search -->
+    <section id="tab-problems" class="tab-content">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="problem-search-input" placeholder="Search problem (e.g. 'Two Sum', 'LRU Cache', #146)...">
+      </div>
+
+      <div class="list-container" id="problems-list">
+        <div class="empty-state">
+          <div class="empty-icon">💡</div>
+          <p>Type a problem title or question number to view all companies that asked it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Settings -->
+    <section id="tab-settings" class="tab-content">
+      <div class="settings-group">
+        <h3 class="settings-heading">In-Page Features</h3>
+        
+        <label class="setting-item">
+          <div class="setting-info">
+            <span class="setting-title">Show Tags on Problem Pages</span>
+            <span class="setting-desc">Inject company tags and frequency pills on leetcode.com/problems/*</span>
+          </div>
+          <input type="checkbox" id="setting-show-tags" class="toggle-checkbox" checked>
+        </label>
+
+        <label class="setting-item">
+          <div class="setting-info">
+            <span class="setting-title">Show Problemset Filter Bar</span>
+            <span class="setting-desc">Add company filter dropdown on leetcode.com/problemset/*</span>
+          </div>
+          <input type="checkbox" id="setting-show-filter" class="toggle-checkbox" checked>
+        </label>
+      </div>
+
+      <div class="settings-group">
+        <h3 class="settings-heading">Default Preferences</h3>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-title">Default Timeframe</span>
+            <span class="setting-desc">Default timeframe filter applied when viewing company tags</span>
+          </div>
+          <select id="setting-default-timeframe" class="settings-select">
+            <option value="all">All Time</option>
+            <option value="30d">Last 30 Days</option>
+            <option value="3m">Last 3 Months</option>
+            <option value="6m">Last 6 Months</option>
+            <option value=">6m">&gt; 6 Months</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="settings-footer">
+        <p>Data synced from <strong>snehasishroy/leetcode-companywise-interview-questions</strong>.</p>
+        <p>100% offline & fast. No API key required.</p>
+      </div>
+    </section>
+
+    <!-- Problem Details Drawer inside popup -->
+    <div id="company-drawer" class="drawer hidden">
+      <div class="drawer-header">
+        <button id="drawer-back-btn" class="drawer-back-btn">← Back</button>
+        <div class="drawer-title" id="drawer-company-title">Google</div>
+      </div>
+      <div class="drawer-stats" id="drawer-stats"></div>
+      <div class="drawer-content" id="drawer-problems-list"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
