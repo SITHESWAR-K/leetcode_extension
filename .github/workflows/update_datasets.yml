@@ -1,0 +1,97 @@
+name: Sync & Update LeetCode Datasets
+
+on:
+  schedule:
+    # Run every Sunday at 02:00 UTC (weekly update)
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+    # Allow manual execution anytime from the GitHub Actions tab
+    inputs:
+      deploy_to_firebase:
+        description: 'Deploy to Firebase Hosting after build (if secrets configured)'
+        required: false
+        type: boolean
+        default: true
+
+concurrency:
+  group: update-datasets
+  cancel-in-progress: true
+
+jobs:
+  update-and-deploy:
+    name: Sync Datasets & Rebuild
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install Web Dependencies
+        run: |
+          cd web
+          npm ci || npm install
+
+      - name: Clone Latest Raw LeetCode Datasets
+        run: |
+          rm -rf raw_data
+          git clone --depth 1 https://github.com/snehasishroy/leetcode-companywise-interview-questions.git raw_data
+
+      - name: Rebuild All Datasets & Web Dashboard
+        run: |
+          npm run build:all
+
+      - name: Package Extension Release ZIP
+        run: |
+          npm run package
+
+      - name: Run Automated Verification Tests
+        run: |
+          npm test
+
+      - name: Commit and Push Updated Datasets & Build
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/ web/public/data/ src/dashboard/ release/
+          if git diff --staged --quiet; then
+            echo "No dataset updates or build changes detected."
+          else
+            git commit -m "chore(data): auto-update leetcode company datasets & builds [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
+
+      - name: Deploy to Firebase Hosting (via Service Account if secret exists)
+        if: ${{ (github.event.inputs.deploy_to_firebase != false) && env.FIREBASE_SA != '' }}
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LEETCODE_COMPANY_VIEWER }}
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_LEETCODE_COMPANY_VIEWER }}'
+          channelId: live
+          projectId: leetcode-company-viewer
+          entryPoint: web
+        continue-on-error: true
+
+      - name: Deploy to Firebase Hosting (via Token fallback if token secret exists)
+        if: ${{ (github.event.inputs.deploy_to_firebase != false) && env.FIREBASE_TOKEN != '' && env.FIREBASE_SA == '' }}
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LEETCODE_COMPANY_VIEWER }}
+        run: |
+          cd web
+          npx firebase-tools deploy --only hosting --token "$FIREBASE_TOKEN"
+        continue-on-error: true
+

@@ -1,8 +1,15 @@
-# 🏢 LeetCode Company Tags & Interview Explorer
+# LeetCode Company Tags & Interview Explorer
 
 A complete developer toolset for company-wise LeetCode interview preparation:
-1. **Chrome / Edge Extension**: Injects sleek, minimal inline company pills below problem titles with frequency badges and `+X more` expand toggles.
-2. **React Web Application**: Full-featured standalone web dashboard for filtering problems by **Company** (660+ companies), **Duration** (30 days, 3 months, 6 months, all time), and **Difficulty**. Hosted live on **Firebase Hosting** at [https://leetcode-company-viewer.web.app](https://leetcode-company-viewer.web.app)!
+1. **Microsoft Edge Add-on & Chrome Extension**: Injects sleek, minimal inline company pills below problem titles with frequency badges and recency data directly inside LeetCode. Available on [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/leetcode-company-tags-f/doaaobpiiccnfcepjjkbogeacmmcpneb)!
+2. **React Web Application**: Standalone web dashboard for filtering problems by **Company** (660+ companies), **Duration** (30 days, 3 months, 6 months, all time), and **Difficulty**. Hosted live on **Firebase Hosting** at [https://leetcode-company-viewer.web.app](https://leetcode-company-viewer.web.app).
+
+---
+
+## 🚀 Microsoft Edge Add-ons Store (Live)
+
+Install with a single click directly from the Microsoft Edge store:
+👉 **[Download on Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/leetcode-company-tags-f/doaaobpiiccnfcepjjkbogeacmmcpneb)**
 
 ---
 
@@ -57,6 +64,20 @@ Live URL: **[https://leetcode-company-viewer.web.app](https://leetcode-company-v
 1. Go to the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole).
 2. Click **"New item"** and upload `release/leetcode-company-tags-extension-v1.0.0.zip`.
 3. Fill in the store listing and submit for review.
+
+---
+
+## 🤖 4. Automated Periodic Updates (GitHub Actions)
+
+This repository includes a scheduled GitHub Actions workflow [`.github/workflows/update_datasets.yml`](.github/workflows/update_datasets.yml) that:
+1. **Pulls the latest interview questions dataset** from upstream every **Sunday at 02:00 UTC**.
+2. **Rebuilds all indexes and JSON datasets** (`problem_to_companies.json`, `company_to_problems.json`, `companies_meta.json`).
+3. **Rebuilds the React web dashboard and offline extension bundle**.
+4. **Runs all 24 verification checks** (`npm test`).
+5. **Auto-commits and pushes** the updated data back to the GitHub repository.
+6. **Auto-deploys to Firebase Hosting** (if `FIREBASE_SERVICE_ACCOUNT_LEETCODE_COMPANY_VIEWER` or `FIREBASE_TOKEN` repository secret is configured).
+
+> **Manual Trigger**: You can also trigger an immediate update at any time under **GitHub → Actions → Sync & Update LeetCode Datasets → Run workflow**.
 
 ---
 

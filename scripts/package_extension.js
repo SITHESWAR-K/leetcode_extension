@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-console.log('📦 Packaging Chrome Extension for Web Store Release...');
+console.log('📦 Packaging Extension for Web Store Release...');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const DIST_DIR = path.join(ROOT_DIR, 'release');
@@ -25,15 +25,21 @@ const includes = [
 ];
 
 try {
-  // Use PowerShell Compress-Archive to build zip on Windows
-  const srcPaths = includes.map(f => `'${path.join(ROOT_DIR, f)}'`).join(',');
-  const cmd = `Compress-Archive -Path ${srcPaths} -DestinationPath '${zipPath}' -Force`;
-  execSync(`powershell -Command "${cmd}"`, { stdio: 'inherit' });
+  if (process.platform === 'win32') {
+    // Use PowerShell Compress-Archive on Windows
+    const srcPaths = includes.map(f => `'${path.join(ROOT_DIR, f)}'`).join(',');
+    const cmd = `Compress-Archive -Path ${srcPaths} -DestinationPath '${zipPath}' -Force`;
+    execSync(`powershell -Command "${cmd}"`, { stdio: 'inherit' });
+  } else {
+    // Use standard zip command on Linux / macOS (e.g. GitHub Actions)
+    execSync(`zip -r "${zipPath}" ${includes.join(' ')}`, { cwd: ROOT_DIR, stdio: 'inherit' });
+  }
 
   const size = (fs.statSync(zipPath).size / 1024 / 1024).toFixed(2);
   console.log(`\n🎉 Release zip created successfully!`);
   console.log(`📁 ${zipPath} (${size} MB)`);
-  console.log(`\nYou can now upload this .zip file directly to the Chrome Web Store Developer Dashboard!`);
+  console.log(`\nYou can now upload this .zip file directly to the Chrome Web Store / Edge Add-ons Dashboard!`);
 } catch (err) {
   console.error('Error creating release zip:', err.message);
+  process.exit(1);
 }
