@@ -56,13 +56,13 @@ Live URL: **[https://leetcode-company-viewer.web.app](https://leetcode-company-v
 
 ### Microsoft Edge Add-ons (100% Free - $0 Developer Fee):
 1. Sign in to the [Microsoft Partner Center](https://partner.microsoft.com/dashboard/microsoftedge).
-2. Click **"Create new extension"**.
-3. Upload the pre-built zip package: `release/leetcode-company-tags-extension-v1.0.0.zip`.
+2. Click **"Create new extension"** (or select your existing extension to update package).
+3. Upload the pre-built zip package: `release/leetcode-company-tags-extension-v1.1.0.zip`.
 4. Fill in the store listing and submit for review.
 
 ### Chrome Web Store:
 1. Go to the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole).
-2. Click **"New item"** and upload `release/leetcode-company-tags-extension-v1.0.0.zip`.
+2. Click **"New item"** and upload `release/leetcode-company-tags-extension-v1.1.0.zip`.
 3. Fill in the store listing and submit for review.
 
 ---

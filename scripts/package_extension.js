@@ -11,7 +11,11 @@ if (!fs.existsSync(DIST_DIR)) {
   fs.mkdirSync(DIST_DIR, { recursive: true });
 }
 
-const zipName = 'leetcode-company-tags-extension-v1.0.0.zip';
+const manifestPath = path.join(ROOT_DIR, 'manifest.json');
+const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+const version = manifest.version || '1.1.0';
+
+const zipName = `leetcode-company-tags-extension-v${version}.zip`;
 const zipPath = path.join(DIST_DIR, zipName);
 
 if (fs.existsSync(zipPath)) {
