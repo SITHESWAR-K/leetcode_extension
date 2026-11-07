@@ -67,20 +67,6 @@ Live URL: **[https://leetcode-company-viewer.web.app](https://leetcode-company-v
 
 ---
 
-## 🤖 4. Automated Periodic Updates (GitHub Actions)
-
-This repository includes a scheduled GitHub Actions workflow [`.github/workflows/update_datasets.yml`](.github/workflows/update_datasets.yml) that:
-1. **Pulls the latest interview questions dataset** from upstream every **Sunday at 02:00 UTC**.
-2. **Rebuilds all indexes and JSON datasets** (`problem_to_companies.json`, `company_to_problems.json`, `companies_meta.json`).
-3. **Rebuilds the React web dashboard and offline extension bundle**.
-4. **Runs all 24 verification checks** (`npm test`).
-5. **Auto-commits and pushes** the updated data back to the GitHub repository.
-6. **Auto-deploys to Firebase Hosting** (if `FIREBASE_SERVICE_ACCOUNT_LEETCODE_COMPANY_VIEWER` or `FIREBASE_TOKEN` repository secret is configured).
-
-> **Manual Trigger**: You can also trigger an immediate update at any time under **GitHub → Actions → Sync & Update LeetCode Datasets → Run workflow**.
-
----
-
 ## 🛠️ Build & Verification Commands
 
 From the root directory:
